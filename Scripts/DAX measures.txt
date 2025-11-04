@@ -1,0 +1,52 @@
+DAX measures used in Power Bi
+NB: PHC2021 is the tablename
+
+#Total Population studied
+Total Population = COUNTROWS(PHC2021)
+
+
+# Region Literacy Rate (format the DAX to fit the specific region)
+Accra Literacy Rate = 
+VAR AccraLiterate =
+    CALCULATE(
+        COUNTROWS(PHC2021),
+        PHC2021[region] = "Greater Accra",
+        PHC2021[Literacy_Status] IN {"Literate", "Partially Literate"}
+    )
+VAR TotalRural = CALCULATE(COUNTROWS(PHC2021), PHC2021[region] = "Greater Accra")
+RETURN DIVIDE(AccraLiterate, TotalRural)   
+
+
+#Gender Literacy rate (format DAX to fit gender)
+Female-Literacy Rate = 
+VAR FemaleLiterate =
+    CALCULATE(
+        COUNTROWS(PHC2021),
+        PHC2021[Sex] = "Female",
+        PHC2021[Literacy_Status] IN {"Literate", "Partially Literate"}
+    )
+VAR TotalFemale = CALCULATE(COUNTROWS(PHC2021), PHC2021[Sex] = "Female")
+RETURN DIVIDE(FemaleLiterate, TotalFemale)
+
+
+#National Literacy Rate 
+Overall Literacy Rate = 
+VAR LiterateCount =
+    CALCULATE(
+        COUNTROWS(PHC2021),
+        PHC2021[Literacy_Status] IN {"Literate", "Partially Literate"}
+    )
+VAR TotalCount = COUNTROWS(PHC2021)
+RETURN DIVIDE(LiterateCount, TotalCount)
+
+
+#Residence Literacy Rate (Urban & Rural)
+Urban Literacy Rate = 
+VAR UrbanLiterate =
+    CALCULATE(
+        COUNTROWS(PHC2021),
+        PHC2021[Residence_Type] = "Urban",
+        PHC2021[Literacy_Status] IN {"Literate", "Partially Literate"}
+    )
+VAR TotalUrban = CALCULATE(COUNTROWS(PHC2021), PHC2021[Residence_Type] = "Urban")
+RETURN DIVIDE(UrbanLiterate, TotalUrban)
