@@ -23,5 +23,6 @@ Key Insights
  Author
 Priscilla Koramah 
 Data Analyst | Turning numbers into stories that inspire change  
-[LinkedIn](www.linkedin.com/in/priscilla-koramah-369004199)
+[LinkedIn](https://www.linkedin.com/in/priscilla-koramah-369004199)
+
 
